@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from config import Config
 
 from models import db, User, Credential
@@ -13,6 +13,8 @@ from encryption import (
     encrypt_password,
     decrypt_password
 )
+
+from password_generator import generate_password
 
 from flask_bcrypt import Bcrypt
 
@@ -222,6 +224,22 @@ def delete_credential(id):
     db.session.commit()
 
     return redirect(url_for("view_credentials"))
+
+
+@app.route("/generate", methods=["GET", "POST"])
+@login_required
+def generate_password_page():
+
+    generated_password = None
+
+    if request.method == "POST":
+
+        generated_password = generate_password()
+
+    return render_template(
+        "generate_password.html",
+        password=generated_password
+    )
 
 
 @app.route("/logout")
