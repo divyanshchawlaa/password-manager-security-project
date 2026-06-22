@@ -173,6 +173,42 @@ def view_credentials():
     )
 
 
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+@login_required
+def edit_credential(id):
+
+    credential = Credential.query.get_or_404(id)
+
+    if credential.user_id != current_user.id:
+        return "Unauthorized"
+
+    form = CredentialForm()
+
+    if form.validate_on_submit():
+
+        credential.website = form.website.data
+        credential.username = form.username.data
+
+        credential.encrypted_password = encrypt_password(
+            form.password.data
+        )
+
+        db.session.commit()
+
+        return redirect(url_for("view_credentials"))
+
+    form.website.data = credential.website
+    form.username.data = credential.username
+    form.password.data = decrypt_password(
+        credential.encrypted_password
+    )
+
+    return render_template(
+        "edit_credential.html",
+        form=form
+    )
+
+
 @app.route("/delete/<int:id>")
 @login_required
 def delete_credential(id):
