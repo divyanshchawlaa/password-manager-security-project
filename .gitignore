@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+
+password_manager.db
+
+keys/secret.key
+
+.env
+.DS_Store
