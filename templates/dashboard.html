@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Dashboard</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
 <h1>Welcome {{ username }}</h1>
 
-<p>
-    <a href="/add">Add Credential</a>
-</p>
+<div class="mt-4">
 
-<p>
-    <a href="/view">View Credentials</a>
-</p>
+    <a href="/add"
+       class="btn btn-primary me-2">
+        Add Credential
+    </a>
 
-<p>
-    <a href="/generate">Generate Password</a>
-</p>
+    <a href="/view"
+       class="btn btn-success me-2">
+        View Credentials
+    </a>
 
-<p>
-    <a href="/logout">Logout</a>
-</p>
+    <a href="/generate"
+       class="btn btn-warning">
+        Generate Password
+    </a>
 
-</body>
-</html>
+</div>
+
+{% endblock %}
