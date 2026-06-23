@@ -1,126 +1,169 @@
-# Secure Password Manager
+# 🔐 Secure Password Manager
 
-## Project Overview
+A secure web-based password manager developed using Python, Flask, SQLite, and modern cybersecurity principles.
 
-This project is a secure password manager developed using Python, Flask, SQLite, and modern cybersecurity practices.
-
-The application allows users to:
-
-* Register and authenticate securely
-* Store website credentials
-* Encrypt stored passwords
-* Generate strong passwords
-* Search stored credentials
-* Manage credentials through a web interface
+This project demonstrates secure authentication, encrypted credential storage, password generation, and password management through a user-friendly web interface.
 
 ---
 
-## Features
+## 🚀 Features
 
-### User Authentication
+### 👤 User Authentication
 
-* User registration
-* User login and logout
-* Password hashing using bcrypt
-* Session management using Flask-Login
+* User Registration
+* User Login & Logout
+* Session Management
+* Password Hashing with bcrypt
 
-### Credential Management
+### 🔒 Credential Management
 
-* Add credentials
-* View credentials
-* Edit credentials
-* Delete credentials
-* Search credentials
+* Add Credentials
+* View Stored Credentials
+* Edit Credentials
+* Delete Credentials
+* Search Credentials
 
-### Security Features
+### 🛡️ Security Features
 
-* Password encryption using Fernet encryption
-* Password hashing using bcrypt
-* Strong password validation
-* Duplicate username prevention
-* Duplicate email prevention
-* SQLAlchemy ORM to reduce SQL injection risks
+* Password Encryption using Fernet (AES-based encryption)
+* Password Hashing using bcrypt
+* Password Strength Validation
+* Duplicate Username Prevention
+* Duplicate Email Prevention
+* SQLAlchemy ORM Protection against SQL Injection
+* Secure Session Handling with Flask-Login
 
-### Password Generator
+### 🔑 Password Generator
 
-* Secure random password generation
-* Uses Python secrets module
+Generate strong random passwords using Python's secure `secrets` module.
 
----
+Example:
 
-## Technologies Used
-
-* Python
-* Flask
-* Flask-WTF
-* Flask-Login
-* Flask-Bcrypt
-* SQLAlchemy
-* SQLite
-* Cryptography (Fernet)
-* Bootstrap 5
+```text
+M@9xQ#2vLp!7RwK8
+```
 
 ---
 
-## Installation
+## 🏗️ Technologies Used
+
+| Technology            | Purpose             |
+| --------------------- | ------------------- |
+| Python                | Backend Development |
+| Flask                 | Web Framework       |
+| SQLite                | Database            |
+| SQLAlchemy            | ORM                 |
+| Flask-Login           | Authentication      |
+| Flask-Bcrypt          | Password Hashing    |
+| Cryptography (Fernet) | Password Encryption |
+| Bootstrap 5           | User Interface      |
+
+---
+
+## 📂 Project Structure
+
+```text
+password-manager/
+│
+├── app.py
+├── config.py
+├── models.py
+├── forms.py
+├── encryption.py
+├── password_generator.py
+├── generate_key.py
+│
+├── templates/
+│   ├── base.html
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── add_credential.html
+│   ├── edit_credential.html
+│   ├── view_credentials.html
+│   └── generate_password.html
+│
+├── requirements.txt
+├── README.md
+└── setup.sh
+```
+
+---
+
+## ⚙️ Installation
 
 ### Clone Repository
 
-git clone YOUR_GITHUB_REPOSITORY_URL
-
-cd password-manager
+```bash
+git clone https://github.com/divyanshchawlaa/password-manager-security-project.git
+cd password-manager-security-project
+```
 
 ### Create Virtual Environment
 
+```bash
 python -m venv venv
+```
 
 ### Activate Virtual Environment
 
-Mac/Linux:
+#### macOS / Linux
 
+```bash
 source venv/bin/activate
+```
 
-Windows:
+#### Windows
 
+```bash
 venv\Scripts\activate
+```
 
 ### Install Dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
 ### Generate Encryption Key
 
+```bash
 python generate_key.py
+```
 
 ### Run Application
 
+```bash
 python app.py
+```
 
 ---
 
-## Default Application URL
+## 🌐 Application URL
 
+```text
 http://127.0.0.1:5000
+```
 
 ---
 
-## Security Measures
+## 🔐 Security Implementation
 
 ### Password Hashing
 
-User passwords are hashed using bcrypt before storage.
+User account passwords are hashed using bcrypt before being stored in the database.
 
 ### Password Encryption
 
-Stored credentials are encrypted using Fernet symmetric encryption.
+Stored credentials are encrypted using Fernet symmetric encryption before being written to the database.
 
-### Authentication
+### Authentication & Sessions
 
-Flask-Login is used to manage authenticated sessions.
+Flask-Login manages authenticated user sessions and protects restricted routes.
 
-### Password Strength Validation
+### Password Strength Enforcement
 
-Passwords must contain:
+User passwords must contain:
 
 * Minimum 8 characters
 * Uppercase letter
@@ -130,22 +173,39 @@ Passwords must contain:
 
 ### Database Security
 
-SQLAlchemy ORM is used instead of raw SQL queries to reduce SQL injection risks.
+SQLAlchemy ORM is used to avoid direct SQL queries and reduce SQL injection risks.
 
 ---
 
-## Future Improvements
+## 🧪 Testing
+
+The application was tested for:
+
+* User Registration
+* Login Authentication
+* Session Management
+* Password Encryption & Decryption
+* Credential CRUD Operations
+* Password Generation
+* Search Functionality
+* Input Validation
+
+---
+
+## 🔮 Future Improvements
 
 * Multi-Factor Authentication (MFA)
-* Password sharing
-* Browser extension support
-* Password breach detection
-* Secure cloud synchronization
+* Password Breach Detection
+* Password Sharing
+* Secure Cloud Synchronization
+* Browser Extension Support
 
 ---
 
-## Author
+## 👨‍💻 Author
 
-Divyansh Chawla
+**Divyansh Chawla**
 
-Cybersecurity Project – Secure Password Manager
+Cybersecurity Project — Secure Password Manager
+
+2026
