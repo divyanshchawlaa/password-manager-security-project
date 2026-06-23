@@ -19,29 +19,38 @@ def strong_password(form, field):
 
     password = field.data
 
+    errors = []
+
     if len(password) < 8:
-        raise ValidationError(
-            "Password must be at least 8 characters."
+        errors.append(
+            "at least 8 characters"
         )
 
     if not re.search(r"[A-Z]", password):
-        raise ValidationError(
-            "Password must contain an uppercase letter."
+        errors.append(
+            "an uppercase letter"
         )
 
     if not re.search(r"[a-z]", password):
-        raise ValidationError(
-            "Password must contain a lowercase letter."
+        errors.append(
+            "a lowercase letter"
         )
 
     if not re.search(r"\d", password):
-        raise ValidationError(
-            "Password must contain a number."
+        errors.append(
+            "a number"
         )
 
     if not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+        errors.append(
+            "a special character"
+        )
+
+    if errors:
+
         raise ValidationError(
-            "Password must contain a special character."
+            "Password must contain: " +
+            ", ".join(errors)
         )
 
 
