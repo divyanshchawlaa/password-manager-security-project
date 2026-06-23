@@ -2,24 +2,47 @@
 
 {% block content %}
 
-<h1>Welcome {{ username }}</h1>
+<div class="card shadow-sm">
 
-<div class="mt-4">
+    <div class="card-body p-5">
 
-    <a href="/add"
-       class="btn btn-primary me-2">
-        Add Credential
-    </a>
+        <h2 class="mb-3">
+            Welcome, {{ username }}
+        </h2>
 
-    <a href="/view"
-       class="btn btn-success me-2">
-        View Credentials
-    </a>
+        <p class="text-muted mb-4">
+            Securely manage your stored credentials and generate strong passwords.
+        </p>
 
-    <a href="/generate"
-       class="btn btn-warning">
-        Generate Password
-    </a>
+        <div class="d-grid gap-3">
+
+            <a
+                href="/add"
+                class="btn btn-dark">
+
+                Add Credential
+
+            </a>
+
+            <a
+                href="/view"
+                class="btn btn-outline-dark">
+
+                View Credentials
+
+            </a>
+
+            <a
+                href="/generate"
+                class="btn btn-outline-secondary">
+
+                Generate Password
+
+            </a>
+
+        </div>
+
+    </div>
 
 </div>
 
