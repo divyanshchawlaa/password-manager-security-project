@@ -188,6 +188,11 @@ def add_credential():
 @login_required
 def view_credentials():
 
+    search = request.args.get(
+        "search",
+        ""
+    )
+
     credentials = Credential.query.filter_by(
         user_id=current_user.id
     ).all()
@@ -196,18 +201,29 @@ def view_credentials():
 
     for credential in credentials:
 
-        credential_list.append({
-            "id": credential.id,
-            "website": credential.website,
-            "username": credential.username,
-            "password": decrypt_password(
-                credential.encrypted_password
-            )
-        })
+        if (
+            search.lower()
+            in credential.website.lower()
+        ):
+
+            credential_list.append({
+
+                "id": credential.id,
+
+                "website": credential.website,
+
+                "username": credential.username,
+
+                "password": decrypt_password(
+                    credential.encrypted_password
+                )
+
+            })
 
     return render_template(
         "view_credentials.html",
-        credentials=credential_list
+        credentials=credential_list,
+        search=search
     )
 
 
