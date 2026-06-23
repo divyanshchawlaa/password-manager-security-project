@@ -1,4 +1,12 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import (
+    Flask,
+    render_template,
+    redirect,
+    url_for,
+    request,
+    flash
+)
+
 from config import Config
 
 from models import db, User, Credential
@@ -49,7 +57,7 @@ def load_user(user_id):
 
 @app.route("/")
 def home():
-    return "Password Manager Running"
+    return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -72,7 +80,14 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        return "Registration Successful"
+        flash(
+            "Registration successful. Please login.",
+            "success"
+        )
+
+        return redirect(
+            url_for("login")
+        )
 
     return render_template(
         "register.html",
@@ -98,9 +113,23 @@ def login():
 
             login_user(user)
 
-            return redirect(url_for("dashboard"))
+            flash(
+                f"Welcome back, {user.username}!",
+                "success"
+            )
 
-        return "Invalid credentials"
+            return redirect(
+                url_for("dashboard")
+            )
+
+        flash(
+            "Invalid email or password.",
+            "danger"
+        )
+
+        return redirect(
+            url_for("login")
+        )
 
     return render_template(
         "login.html",
@@ -140,7 +169,14 @@ def add_credential():
         db.session.add(credential)
         db.session.commit()
 
-        return redirect(url_for("view_credentials"))
+        flash(
+            "Credential saved successfully.",
+            "success"
+        )
+
+        return redirect(
+            url_for("view_credentials")
+        )
 
     return render_template(
         "add_credential.html",
@@ -197,7 +233,14 @@ def edit_credential(id):
 
         db.session.commit()
 
-        return redirect(url_for("view_credentials"))
+        flash(
+            "Credential updated successfully.",
+            "success"
+        )
+
+        return redirect(
+            url_for("view_credentials")
+        )
 
     form.website.data = credential.website
     form.username.data = credential.username
@@ -223,7 +266,14 @@ def delete_credential(id):
     db.session.delete(credential)
     db.session.commit()
 
-    return redirect(url_for("view_credentials"))
+    flash(
+        "Credential deleted successfully.",
+        "warning"
+    )
+
+    return redirect(
+        url_for("view_credentials")
+    )
 
 
 @app.route("/generate", methods=["GET", "POST"])
@@ -248,7 +298,14 @@ def logout():
 
     logout_user()
 
-    return redirect(url_for("login"))
+    flash(
+        "You have been logged out.",
+        "info"
+    )
+
+    return redirect(
+        url_for("login")
+    )
 
 
 if __name__ == "__main__":

@@ -1,58 +1,75 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<h1>Register</h1>
+<div class="row justify-content-center">
 
-<form method="POST">
+    <div class="col-md-6">
 
-    {{ form.hidden_tag() }}
+        <div class="card shadow">
 
-    <p>
-        {{ form.username.label }}
-        {{ form.username() }}
+            <div class="card-header">
+                <h3>Create Account</h3>
+            </div>
 
-        {% for error in form.username.errors %}
-            <br>
-            <span style="color:red;">
-                {{ error }}
-            </span>
-        {% endfor %}
-    </p>
+            <div class="card-body">
 
-    <p>
-        {{ form.email.label }}
-        {{ form.email() }}
+                <form method="POST">
 
-        {% for error in form.email.errors %}
-            <br>
-            <span style="color:red;">
-                {{ error }}
-            </span>
-        {% endfor %}
-    </p>
+                    {{ form.hidden_tag() }}
 
-    <p>
-        {{ form.password.label }}
-        {{ form.password() }}
+                    <div class="mb-3">
 
-        {% for error in form.password.errors %}
-            <br>
-            <span style="color:red;">
-                {{ error }}
-            </span>
-        {% endfor %}
-    </p>
+                        {{ form.username.label(class="form-label") }}
 
-    <p>
-        {{ form.submit() }}
-    </p>
+                        {{ form.username(class="form-control") }}
 
-</form>
+                        {% for error in form.username.errors %}
+                            <div class="text-danger mt-1">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
 
-</body>
-</html>
+                    </div>
+
+                    <div class="mb-3">
+
+                        {{ form.email.label(class="form-label") }}
+
+                        {{ form.email(class="form-control") }}
+
+                        {% for error in form.email.errors %}
+                            <div class="text-danger mt-1">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        {{ form.password.label(class="form-label") }}
+
+                        {{ form.password(class="form-control") }}
+
+                        {% for error in form.password.errors %}
+                            <div class="text-danger mt-1">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+
+                    </div>
+
+                    {{ form.submit(class="btn btn-primary") }}
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,32 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block content %}
 
-<h1>Login</h1>
+<div class="row justify-content-center">
 
-<form method="POST">
+    <div class="col-md-6">
 
-    {{ form.hidden_tag() }}
+        <div class="card shadow">
 
-    <p>
-        {{ form.email.label }}
-        {{ form.email() }}
-    </p>
+            <div class="card-header">
+                <h3>Login</h3>
+            </div>
 
-    <p>
-        {{ form.password.label }}
-        {{ form.password() }}
-    </p>
+            <div class="card-body">
 
-    <p>
-        {{ form.submit() }}
-    </p>
+                <form method="POST">
 
-</form>
+                    {{ form.hidden_tag() }}
 
-</body>
-</html>
+                    <div class="mb-3">
+
+                        {{ form.email.label(class="form-label") }}
+
+                        {{ form.email(class="form-control") }}
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        {{ form.password.label(class="form-label") }}
+
+                        {{ form.password(class="form-control") }}
+
+                    </div>
+
+                    {{ form.submit(class="btn btn-success") }}
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
